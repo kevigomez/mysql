@@ -64,7 +64,7 @@ from agenda;
 
 select 
 id_documento as seguimiento,
-Tipo_documento,nombre,rol,correo,telefono,disponibilidad,id_cita
+Tipo_documento,nombre,rol,correo,telefono,id_cita
 from paciente;
 select 
 id_sede as seguimiento,
@@ -82,8 +82,17 @@ select * from agenda where id_agenda<=5;
 select * from paciente where id_documento<=5;
 select * from sede where id_sede<=5;
 
+/*tercero*/
+SELECT * FROM doctor where id_documento=2 or id_documento=4 or id_documento=6 or id_documento=8 or id_documento=10;
+SELECT * FROM citas where id_cita=2 or id_cita=4 or id_cita=6 or id_cita=8 or id_cita=10;
+SELECT * FROM agenda where id_agenda=2 or id_agenda=4 or id_agenda=6 or id_agenda=8 or id_agenda=10;
+SELECT * FROM paciente where id_documento=2 or id_documento=4 or id_documento=6 or id_documento=8 or id_documento=10;
+SELECT * FROM sede where id_sede=2 or id_sede=4 or id_sede=6 or id_sede=8 or id_sede=10;
 
-SELECT id_documento FROM doctor where Count(*) % 2 = 0  
-
-
+/*cuarto*/
+select * FROM doctor inner join citas  on doctor.id_documento = citas.id_cita;
+select * FROM citas inner join agenda  on citas.id_cita = agenda.id_agenda;
+select * FROM agenda inner join paciente  on agenda.id_agenda = paciente.id_documento;
+select * FROM paciente inner join sede  on paciente.id_documento = sede.id_sede;
+select * FROM sede inner join doctor  on sede.id_sede = doctor.id_documento;
 
